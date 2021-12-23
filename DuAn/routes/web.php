@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -122,8 +123,10 @@ Route::group([
     Route::post('/edit-product/{id}','admin\ProductController@update');
     Route::get('/delete-product/{id}','admin\ProductController@delete');
     Route::post('findAdmin','admin\ProductController@search')->name('search_admin');
+//ThongKe
+    
 });
-   
+Route::get('thongke','admin\thongkecontroller@thongke')->name('thongke');
    
 Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
