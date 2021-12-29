@@ -19,7 +19,7 @@
                 <th scope="row">{{$data->id}}</th>
                 <td>{{$data->address}}</td>
                 <td>{{$data->phone}}</td>
-                <td>{{date('d-m-Y',$data->day)}}</td>
+                <td>{{$data->day}}</td>
                 <td>
                     <a href="{{route('order-detail',$data->id)}}" class="btn btn-primary">Detail</a>
                 </td>

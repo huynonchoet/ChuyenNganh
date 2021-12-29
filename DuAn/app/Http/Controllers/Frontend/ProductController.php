@@ -35,7 +35,8 @@ class ProductController extends Controller
     }
     public function order(){
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        $time = strtotime(date('Y-m-d H:i:s'));
+        // $time = strtotime(date('Y-m-d H:i:s'));
+        $time = date('Y-m-d');
         $order = new order();
             $order->id_user = Auth::user()->id;
             if( Auth::user()->address == null){
@@ -50,14 +51,16 @@ class ProductController extends Controller
             $order->save();
        
         $cart= [];
-        $order1 = order::where('id_user',Auth::id())->first();
+        $order1 = order::where('id_user',Auth::id())->orderBy('id','desc')->first();
         if(session()->has('cart')){
             $cart = session()->get('cart');
+            //  dd($cart);
             foreach($cart as $key => $value){
                 $detail = new detail_order();
                 $detail->id_product = $cart[$key]['Id'];
                 $detail->id_order = $order1->id;
                 $detail->amount = $cart[$key]['amount'];
+                // dd($detail);
                 $detail->save();
             } 
         }
